@@ -2,6 +2,8 @@
 
 [![](http://cf.way2muchnoise.eu/projectex.svg) ![](http://cf.way2muchnoise.eu/versions/projectex.svg)](https://www.curseforge.com/minecraft/mc-mods/projectex)
 
+难搞啊！兄弟
+
 ## About
 
 FTB ProjectEX is an **unofficial** extention mod for ProjectE providing new features like: 
