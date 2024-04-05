@@ -1,6 +1,7 @@
 package dev.latvian.mods.projectex.item;
 
 import dev.latvian.mods.projectex.ProjectEX;
+import dev.latvian.mods.projectex.menu.ArcaneTabletMenu;
 import moze_intel.projecte.gameObjs.container.TransmutationContainer;
 import moze_intel.projecte.utils.text.PELang;
 import net.minecraft.ChatFormatting;
@@ -48,15 +49,15 @@ public class ArcaneTabletItem extends Item {
 	}
 
 	private static class ContainerProvider implements MenuProvider {
-		private final InteractionHand hand;
 
+		private final InteractionHand hand;
 		private ContainerProvider(InteractionHand hand) {
 			this.hand = hand;
 		}
 
 		@Override
 		public AbstractContainerMenu createMenu(int windowId, @Nonnull Inventory playerInventory, @Nonnull Player player) {
-			return new TransmutationContainer(windowId, playerInventory, this.hand);
+			return new ArcaneTabletMenu(windowId, playerInventory);
 		}
 
 		@Override

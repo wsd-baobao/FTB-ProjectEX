@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public interface ProjectEXBlocks {
+public interface ModBlocks {
 	DeferredRegister<Block> REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCKS, ProjectEX.MOD_ID);
 
 	Supplier<Block> ENERGY_LINK = REGISTRY.register("energy_link", EnergyLinkBlock::new);
@@ -36,6 +36,7 @@ public interface ProjectEXBlocks {
 			map.put(matter, REGISTRY.register(matter.name + "_power_flower", () -> new PowerFlowerBlock(matter)));
 		}
 	});
+
 
 	Supplier<Block> STONE_TABLE = REGISTRY.register("stone_table", StoneTableBlock::new);
 	Supplier<Block> ALCHEMY_TABLE = REGISTRY.register("alchemy_table", AlchemyTableBlock::new);

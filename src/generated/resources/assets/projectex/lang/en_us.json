@@ -113,5 +113,7 @@
 	"item.projectex.white_matter": "White Matter",
 	"item.projectex.yellow_compressed_collector": "Yellow Compressed Energy Collector [MK12]",
 	"item.projectex.yellow_matter": "Yellow Matter",
-	"itemGroup.projectex": "ProjectEX"
+	"itemGroup.projectex": "ProjectEX",
+
+	"projectex.general.search_type": "Search_Type"
 }

@@ -3,7 +3,7 @@ package dev.latvian.mods.projectex.item;
 import dev.latvian.mods.projectex.Matter;
 import dev.latvian.mods.projectex.ProjectEX;
 import dev.latvian.mods.projectex.Star;
-import dev.latvian.mods.projectex.block.ProjectEXBlocks;
+import dev.latvian.mods.projectex.block.ModBlocks;
 import net.minecraft.Util;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -15,38 +15,38 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public interface ProjectEXItems {
+public interface ModItems {
 	DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, ProjectEX.MOD_ID);
 
 	static Supplier<BlockItem> blockItem(String id, Supplier<Block> sup) {
 		return REGISTRY.register(id, () -> new BlockItem(sup.get(), new Item.Properties().tab(ProjectEX.tab)));
 	}
 
-	Supplier<BlockItem> ENERGY_LINK = blockItem("energy_link", ProjectEXBlocks.ENERGY_LINK);
-	Supplier<BlockItem> PERSONAL_LINK = blockItem("personal_link", ProjectEXBlocks.PERSONAL_LINK);
-	Supplier<BlockItem> REFINED_LINK = blockItem("refined_link", ProjectEXBlocks.REFINED_LINK);
-	Supplier<BlockItem> COMPRESSED_REFINED_LINK = blockItem("compressed_refined_link", ProjectEXBlocks.COMPRESSED_REFINED_LINK);
+	Supplier<BlockItem> ENERGY_LINK = blockItem("energy_link", ModBlocks.ENERGY_LINK);
+	Supplier<BlockItem> PERSONAL_LINK = blockItem("personal_link", ModBlocks.PERSONAL_LINK);
+	Supplier<BlockItem> REFINED_LINK = blockItem("refined_link", ModBlocks.REFINED_LINK);
+	Supplier<BlockItem> COMPRESSED_REFINED_LINK = blockItem("compressed_refined_link", ModBlocks.COMPRESSED_REFINED_LINK);
 
 	Map<Matter, Supplier<BlockItem>> COLLECTOR = Util.make(new LinkedHashMap<>(), map -> {
 		for (Matter matter : Matter.VALUES) {
-			map.put(matter, blockItem(matter.name + "_collector", ProjectEXBlocks.COLLECTOR.get(matter)));
+			map.put(matter, blockItem(matter.name + "_collector", ModBlocks.COLLECTOR.get(matter)));
 		}
 	});
 
 	Map<Matter, Supplier<BlockItem>> RELAY = Util.make(new LinkedHashMap<>(), map -> {
 		for (Matter matter : Matter.VALUES) {
-			map.put(matter, blockItem(matter.name + "_relay", ProjectEXBlocks.RELAY.get(matter)));
+			map.put(matter, blockItem(matter.name + "_relay", ModBlocks.RELAY.get(matter)));
 		}
 	});
 
 	Map<Matter, Supplier<BlockItem>> POWER_FLOWER = Util.make(new LinkedHashMap<>(), map -> {
 		for (Matter matter : Matter.VALUES) {
-			map.put(matter, blockItem(matter.name + "_power_flower", ProjectEXBlocks.POWER_FLOWER.get(matter)));
+			map.put(matter, blockItem(matter.name + "_power_flower", ModBlocks.POWER_FLOWER.get(matter)));
 		}
 	});
 
-	Supplier<BlockItem> STONE_TABLE = blockItem("stone_table", ProjectEXBlocks.STONE_TABLE);
-	Supplier<BlockItem> ALCHEMY_TABLE = blockItem("alchemy_table", ProjectEXBlocks.ALCHEMY_TABLE);
+	Supplier<BlockItem> STONE_TABLE = blockItem("stone_table", ModBlocks.STONE_TABLE);
+	Supplier<BlockItem> ALCHEMY_TABLE = blockItem("alchemy_table", ModBlocks.ALCHEMY_TABLE);
 
 	Map<Star, Supplier<Item>> MAGNUM_STAR = Util.make(new LinkedHashMap<>(), map -> {
 		for (Star star : Star.VALUES) {

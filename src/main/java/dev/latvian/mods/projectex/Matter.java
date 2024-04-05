@@ -1,6 +1,6 @@
 package dev.latvian.mods.projectex;
 
-import dev.latvian.mods.projectex.item.ProjectEXItems;
+import dev.latvian.mods.projectex.item.ModItems;
 import moze_intel.projecte.gameObjs.registries.PEItems;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -25,7 +25,7 @@ public enum Matter {
 	ORANGE("orange", "Orange", true, 41943040L, 15360000L, 671088640L, null),
 	WHITE("white", "White", true, 167772160L, 61440000L, 2684354560L, null),
 	FADING("fading", "Fading", true, 671088640L, 245760000L, 10737418240L, null),
-	FINAL("final", "The Final", false, 1000000000000L, 1000000000000L, Long.MAX_VALUE, () -> ProjectEXItems.FINAL_STAR_SHARD.get());
+	FINAL("final", "The Final", false, 1000000000000L, 1000000000000L, Long.MAX_VALUE, () -> ModItems.FINAL_STAR_SHARD.get());
 
 	public static final Matter[] VALUES = values();
 
@@ -49,7 +49,7 @@ public enum Matter {
 
 	public Supplier<Item> getItem() {
 		// Need to be kept as lambdas so it doesnt reference the class before its loaded
-		return item == null ? ProjectEXItems.MATTER.get(this) : item;
+		return item == null ? ModItems.MATTER.get(this) : item;
 	}
 
 	@Nullable

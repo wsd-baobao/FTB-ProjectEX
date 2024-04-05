@@ -53,7 +53,7 @@ public class CollectorBlockEntity extends BlockEntity implements TickableBlockEn
 
 	@Override
 	public void tick() {
-		if (level.isClientSide()) {
+		if (level != null && level.isClientSide()) {
 			return;
 		}
 

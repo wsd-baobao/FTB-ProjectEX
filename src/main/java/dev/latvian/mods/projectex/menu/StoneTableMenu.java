@@ -1,0 +1,24 @@
+package dev.latvian.mods.projectex.menu;
+
+import dev.latvian.mods.projectex.config.ConfigHelper;
+import moze_intel.projecte.api.capabilities.item.IItemEmcHolder;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
+
+public class StoneTableMenu extends AbstractTableMenu{
+    public StoneTableMenu(int windowId, Inventory invPlayer, BlockPos pos) {
+        super(ModMenuTypes.STONE_TABLE.get(), windowId, invPlayer, pos);
+        addPlayerSlots(invPlayer, 8, 135);
+    }
+
+    public StoneTableMenu(int windowId, Inventory playerInv, FriendlyByteBuf buf) {
+        this(windowId, playerInv, buf.readBlockPos());
+    }
+
+    @Override
+    public boolean isItemValid(ItemStack stack) {
+        return !stack.isEmpty() && (stack.getItem() instanceof IItemEmcHolder || ConfigHelper.isStoneTableWhitelisted(stack));
+    }
+}
