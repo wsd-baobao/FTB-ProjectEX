@@ -44,8 +44,6 @@ public class ArcaneTabletTransfer implements IRecipeTransferHandler<ArcaneTablet
         if (doTransfer) {
             if (recipe instanceof CraftingRecipe){
 
-
-
             Map<Integer, ? extends IGuiIngredient<ItemStack>> guiIngredients = recipeLayout.getItemStacks().getGuiIngredients();
             Map<Integer, ItemStack> temp = new HashMap<>();
             for (int i = 0; i < guiIngredients.size()-1; i++){
@@ -58,8 +56,7 @@ public class ArcaneTabletTransfer implements IRecipeTransferHandler<ArcaneTablet
             List<Slot> slots = container.slots
                     .stream().filter(s -> s.container instanceof CraftingContainer)
                     .collect(Collectors.toList());
-            System.out.println(slots);
-            System.out.println(temp);
+
             if (slots.size() != temp.size()){
                 return transferHelper.createInternalError();
             }
@@ -67,7 +64,6 @@ public class ArcaneTabletTransfer implements IRecipeTransferHandler<ArcaneTablet
             for (int i = 0; i < temp.size(); i++){
                 stacksMap.put(i, Collections.singletonList((temp.get(i))));
             }
-
 
             NetworkHandler.sendToServer(new PacketArcaneTabletRecipeTransfer(stacksMap, maxTransfer));
         }
