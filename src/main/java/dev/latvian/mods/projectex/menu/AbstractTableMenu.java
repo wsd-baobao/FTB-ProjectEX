@@ -169,10 +169,12 @@ public class AbstractTableMenu extends AbstractEXMenu<AbstractEMCBlockEntity> im
         if (player instanceof ServerPlayer && index >= playerSlotsStart && !stack.isEmpty()) {
             ServerPlayer serverPlayer = (ServerPlayer) player;
             if (!ProjectEAPI.getEMCProxy().hasValue(stack)) {
+                player.inventory.setChanged();
                 return ItemStack.EMPTY  ;
             }
             ItemStack fixed = ProjectEAPI.getEMCProxy().getPersistentInfo(ItemInfo.fromStack(stack)).createStack();
             if (!isItemValid(fixed)) {
+                player.inventory.setChanged();
                 return ItemStack.EMPTY;
             }
             tryAddKnowledge(fixed);
@@ -182,9 +184,10 @@ public class AbstractTableMenu extends AbstractEXMenu<AbstractEMCBlockEntity> im
             provider.syncEmc(serverPlayer);
             slot.set(ItemStack.EMPTY);
             player.inventoryMenu.slotsChanged((Container) player.inventoryMenu);
+            player.inventory.setChanged();
             return fixed;
         }
-
+        player.inventory.setChanged();
         return ItemStack.EMPTY;
     }
 

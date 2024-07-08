@@ -133,6 +133,7 @@ public class ArcaneTabletMenu extends AbstractTableMenu{
                 ItemStack oldStack = stack.copy();
 
                 if (!moveItemStackTo(stack, playerSlotsStart, playerSlotsStart + 36, true)) {
+                    player.inventory.setChanged();
                     return ItemStack.EMPTY;
                 }
 
@@ -143,6 +144,7 @@ public class ArcaneTabletMenu extends AbstractTableMenu{
                 }
 
                 if (stack.getCount() == oldStack.getCount()) {
+                    player.inventory.setChanged();
                     return ItemStack.EMPTY;
                 }
 

@@ -64,9 +64,7 @@ repositories {
 
 dependencies {
 	minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
-
 	mappings minecraft.officialMojangMappings()
-
 	forge "net.minecraftforge:forge:${rootProject.minecraft_version}-${rootProject.forge_version}"
 	modImplementation "curse.maven:projecte-226410:${projecte_file}"
 	modImplementation "curse.maven:jei-238222:${jei_file}"
