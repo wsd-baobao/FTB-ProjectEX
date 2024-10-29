@@ -8,7 +8,6 @@ import dev.latvian.mods.projectex.item.ModItems;
 import dev.latvian.mods.projectex.menu.ModMenuTypes;
 import dev.latvian.mods.projectex.network.NetworkHandler;
 import dev.latvian.mods.projectex.recipes.ModRecipeSerializers;
-import dev.latvian.mods.projectex.recipes.ModRecipeTypes;
 import dev.latvian.mods.projectex.recipes.RecipeCache;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;

@@ -106,7 +106,6 @@ public class ArcaneTabletMenu extends AbstractTableMenu{
         slotChangedCraftingGrid(this, player.level, player, craftMatrix, craftResult);
     }
 
-
     @Override
     public ItemStack clicked(int slotId, int button, ClickType clickType, Player player) {
         if (slotId >= playerSlotsStart && slotId < slots.size()) {
@@ -150,6 +149,7 @@ public class ArcaneTabletMenu extends AbstractTableMenu{
 
                 resultSlot.onTakeNoRefill(player, stack);
                 player.drop(stack, false);
+                player.inventory.setChanged();
                 return oldStack;
             }
 

@@ -125,6 +125,7 @@ public class AbstractTableMenu extends AbstractEXMenu<AbstractEMCBlockEntity> im
     private void burnItem(boolean storedEMConly) {
         ItemStack cursorStack = player.inventory.getCarried();
         if (!cursorStack.isEmpty()) {
+            ProjectEX.LOGGER.info("手上有物品" + cursorStack);
             if (storedEMConly && cursorStack.getCapability(ProjectEAPI.EMC_HOLDER_ITEM_CAPABILITY).isPresent()) {
                 cursorStack.getCapability(ProjectEAPI.EMC_HOLDER_ITEM_CAPABILITY).ifPresent(handler -> {
                     long extracted = handler.extractEmc(cursorStack, handler.getMaximumEmc(cursorStack), IEmcStorage.EmcAction.EXECUTE);
@@ -162,6 +163,7 @@ public class AbstractTableMenu extends AbstractEXMenu<AbstractEMCBlockEntity> im
         }
     }
 
+
     @Override
     public ItemStack quickMoveStack(Player player, int index) {
         Slot slot = slots.get(index);
@@ -169,12 +171,12 @@ public class AbstractTableMenu extends AbstractEXMenu<AbstractEMCBlockEntity> im
         if (player instanceof ServerPlayer && index >= playerSlotsStart && !stack.isEmpty()) {
             ServerPlayer serverPlayer = (ServerPlayer) player;
             if (!ProjectEAPI.getEMCProxy().hasValue(stack)) {
-                player.inventory.setChanged();
+//                player.inventory.setChanged();
                 return ItemStack.EMPTY  ;
             }
             ItemStack fixed = ProjectEAPI.getEMCProxy().getPersistentInfo(ItemInfo.fromStack(stack)).createStack();
             if (!isItemValid(fixed)) {
-                player.inventory.setChanged();
+//                player.inventory.setChanged();
                 return ItemStack.EMPTY;
             }
             tryAddKnowledge(fixed);
@@ -183,11 +185,12 @@ public class AbstractTableMenu extends AbstractEXMenu<AbstractEMCBlockEntity> im
             provider.setEmc(provider.getEmc().add(BigInteger.valueOf(toAdd)));
             provider.syncEmc(serverPlayer);
             slot.set(ItemStack.EMPTY);
+            // 重要，shift快速移动物品，更新UI界面
             player.inventoryMenu.slotsChanged((Container) player.inventoryMenu);
-            player.inventory.setChanged();
+//            player.inventory.setChanged();
             return fixed;
         }
-        player.inventory.setChanged();
+//        player.inventory.setChanged();
         return ItemStack.EMPTY;
     }
 

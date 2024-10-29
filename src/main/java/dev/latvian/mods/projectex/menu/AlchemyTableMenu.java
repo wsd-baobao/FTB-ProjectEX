@@ -5,13 +5,15 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * 炼金桌的容器UI界面
+ */
 public class AlchemyTableMenu extends AbstractEXMenu<AlchemyTableEntity>{
     public AlchemyTableMenu(MenuType<?> type, int windowId, Inventory invPlayer, BlockPos blockPos) {
         super(type, windowId, invPlayer, blockPos);

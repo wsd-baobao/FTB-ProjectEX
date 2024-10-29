@@ -64,7 +64,6 @@ public abstract class AbstractTableScreen<C extends AbstractTableMenu> extends A
 
     @Override
     public void tick() {
-
         super.tick();
         containerTick();
     }
@@ -74,7 +73,8 @@ public abstract class AbstractTableScreen<C extends AbstractTableMenu> extends A
             staticSearch = searchField.getValue();
             staticPage = 0;
             updateValidItemList();
-            if (ConfigHelper.client().general.searchType.get().jeiSync) JEIHooks.handleJEISync(staticSearch);
+            if (ConfigHelper.client().general.searchType.get().jeiSync)
+                JEIHooks.handleJEISync(staticSearch);
         }
     }
 
@@ -91,9 +91,7 @@ public abstract class AbstractTableScreen<C extends AbstractTableMenu> extends A
             searchField.setValue("");
             return true;
         }
-//        System.out.println(mouseY);
-//        System.out.println(mouseX);
-//        System.out.println(button);
+
         return super.mouseClicked(mouseX, mouseY, button);
     }
 

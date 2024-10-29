@@ -23,11 +23,8 @@ public class ConfigHelper {
 
     public static boolean isStoneTableWhitelisted(ItemStack stack) {
         ProjectEX.LOGGER.info("---------------------------"+stack);
-//        ProjectEX.LOGGER.info("isStoneTableWhitelisted: " + EXTags.Items.STONE_TABLE_WHITELIST.contains(stack.getItem()));
-//        ProjectEX.LOGGER.info("isStoneTableWhitelisted: " + server().general.enableStoneTableWhitelist.get());
-//
-//
-        return  !server().general.enableStoneTableWhitelist.get() ||(EXTags.Items.STONE_TABLE_WHITELIST.contains(stack.getItem()));
+
+        return !server().general.enableStoneTableWhitelist.get() || (EXTags.Items.STONE_TABLE_WHITELIST.contains(stack.getItem()));
     }
 
     public static BigInteger getEMCLinkMaxOutput() {

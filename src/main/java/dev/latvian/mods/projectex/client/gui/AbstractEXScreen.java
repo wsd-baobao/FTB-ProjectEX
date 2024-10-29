@@ -1,13 +1,9 @@
 package dev.latvian.mods.projectex.client.gui;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import dev.latvian.mods.projectex.block.entity.AbstractEMCBlockEntity;
-import dev.latvian.mods.projectex.block.entity.CollectorBlockEntity;
 import dev.latvian.mods.projectex.menu.AbstractEXMenu;
-import mezz.jei.render.IngredientRenderHelper;
-import moze_intel.projecte.gameObjs.gui.AbstractCollectorScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -18,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class AbstractEXScreen<C extends AbstractEXMenu<T> , T extends AbstractEMCBlockEntity> extends AbstractContainerScreen<C> {

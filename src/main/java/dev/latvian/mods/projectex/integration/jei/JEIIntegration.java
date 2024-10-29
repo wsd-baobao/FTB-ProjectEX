@@ -1,27 +1,18 @@
 package dev.latvian.mods.projectex.integration.jei;
 
-import com.google.common.collect.ImmutableList;
 import dev.latvian.mods.projectex.ProjectEX;
 import dev.latvian.mods.projectex.block.ModBlocks;
 import dev.latvian.mods.projectex.client.gui.AbstractEXScreen;
 import dev.latvian.mods.projectex.client.gui.AlchemyTableScreen;
 import dev.latvian.mods.projectex.client.gui.ArcaneTabletScreen;
 import dev.latvian.mods.projectex.item.ModItems;
-import dev.latvian.mods.projectex.recipes.ModRecipeTypes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.registration.*;
 import mezz.jei.api.runtime.IJeiRuntime;
-import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
-
-import java.util.List;
 
 @JeiPlugin
 public class JEIIntegration implements IModPlugin {
@@ -39,6 +30,7 @@ public class JEIIntegration implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registry) {
         jeiHelpers = registry.getJeiHelpers();
     }
+
 
 
     @Override
@@ -62,13 +54,19 @@ public class JEIIntegration implements IModPlugin {
     }
 
 
-
     @Override
     public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
+        System.out.println("onRuntimeAvailable===============进行赋值");
         runtime = jeiRuntime;
+
     }
 
     public static void setFilterText(String text) {
-        runtime.getIngredientFilter().setFilterText(text);
+        System.out.println("runtime ============================="+runtime);
+        System.out.println("Setting filter text to--------- " + text);
+        if (text != null) {
+            runtime.getIngredientFilter().setFilterText(text);
+        }
+
     }
 }
