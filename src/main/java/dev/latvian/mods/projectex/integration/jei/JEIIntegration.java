@@ -30,21 +30,15 @@ public class JEIIntegration implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registry) {
         jeiHelpers = registry.getJeiHelpers();
     }
-
-
-
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.ALCHEMY_TABLE.get()), (ResourceLocation) RecipeTypes.ALCHEMY_TABLE);
         registration.addRecipeCatalyst(new ItemStack(ModItems.ARCANE_TABLET.get()), mezz.jei.api.constants.VanillaRecipeCategoryUid.CRAFTING);
     }
-
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(AlchemyTableScreen.class, 78, 35, 23, 14, (ResourceLocation) RecipeTypes.ALCHEMY_TABLE);
-
         registration.addGhostIngredientHandler(AbstractEXScreen.class, new EMCLinkJEI<>());
-
         registration.addGuiContainerHandler(ArcaneTabletScreen.class, new ArcaneTabletGuiArea());
     }
 
@@ -53,17 +47,20 @@ public class JEIIntegration implements IModPlugin {
         registration.addUniversalRecipeTransferHandler(new ArcaneTabletTransfer(registration.getTransferHelper()));
     }
 
-
     @Override
     public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
+//        这个方法不执行，runtime无法初始化，导致下边的方法无法执行
         System.out.println("onRuntimeAvailable===============进行赋值");
         runtime = jeiRuntime;
-
     }
 
     public static void setFilterText(String text) {
         System.out.println("runtime ============================="+runtime);
         System.out.println("Setting filter text to--------- " + text);
+        if (runtime == null){
+            //不执行这个方法，避免游戏崩溃
+            return;
+        }
         if (text != null) {
             runtime.getIngredientFilter().setFilterText(text);
         }
