@@ -22,6 +22,7 @@ public abstract class AbstractLinkScreen<C extends AbstractLinkMenu<T>, T extend
 
     public AbstractLinkScreen(C menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
+
     }
 
     @Override
@@ -39,7 +40,7 @@ public abstract class AbstractLinkScreen<C extends AbstractLinkMenu<T>, T extend
         List<Component> l = super.getTooltipFromItem(itemStack);
         if (!itemStack.isEmpty() && getSlotUnderMouse() instanceof FilterSlot) {
             for (int i = 1; i <= 3; i++) {
-                l.add(new TranslatableComponent("gui.extendedexchange.link.tooltip." + i).withStyle(ChatFormatting.GRAY));
+                l.add(new TranslatableComponent("gui.projectex.link.tooltip." + i).withStyle(ChatFormatting.GRAY));
             }
         }
         return l;

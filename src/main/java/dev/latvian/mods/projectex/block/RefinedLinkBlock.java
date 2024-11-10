@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class RefinedLinkBlock extends LinkBaseBlock {
+public class RefinedLinkBlock extends AbstractEXBlock {
 	@Override
 	public BlockEntity createTileEntity(BlockState state, BlockGetter world) {
 		return new RefinedLinkBlockEntity();
@@ -28,5 +28,15 @@ public class RefinedLinkBlock extends LinkBaseBlock {
 		super.appendHoverText(stack, level, list, flag);
 		list.add(new TranslatableComponent("block.projectex.refined_link.tooltip").withStyle(ChatFormatting.GRAY));
 		list.add(new TextComponent("WIP!").withStyle(ChatFormatting.RED));
+	}
+
+//	@Override
+//	public @Nullable BlockEntity newBlockEntity(BlockGetter arg) {
+//		return null;
+//	}
+
+	@Override
+	public boolean hasTileEntity(BlockState state) {
+		return true;
 	}
 }

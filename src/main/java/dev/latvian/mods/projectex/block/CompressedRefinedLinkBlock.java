@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CompressedRefinedLinkBlock extends LinkBaseBlock {
+public class CompressedRefinedLinkBlock extends AbstractEXBlock {
 	@Override
 	public BlockEntity createTileEntity(BlockState state, BlockGetter world) {
 		return new CompressedRefinedLinkBlockEntity();

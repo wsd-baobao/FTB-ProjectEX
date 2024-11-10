@@ -11,10 +11,13 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.annotation.Nonnull;
 
-public abstract class  AbstractEXMenu <T extends BlockEntity> extends AbstractContainerMenu {
+public abstract class AbstractEXMenu<T extends BlockEntity> extends AbstractContainerMenu {
+    private static final Log log = LogFactory.getLog(AbstractEXMenu.class);
     private final T blockEntity;
     private final BlockPos blockPos;
     int playerSlotsStart;
@@ -22,7 +25,6 @@ public abstract class  AbstractEXMenu <T extends BlockEntity> extends AbstractCo
     public AbstractEXMenu(MenuType<?> type, int windowId, Inventory invPlayer, BlockPos blockPos) {
         super(type, windowId);
         this.blockPos = blockPos;
-
         if (blockPos != null) {
             BlockEntity be0 = invPlayer.player.level.getBlockEntity(blockPos);
             if (be0 != null && blockEntityClass().isAssignableFrom(be0.getClass())) {
@@ -32,6 +34,7 @@ public abstract class  AbstractEXMenu <T extends BlockEntity> extends AbstractCo
                 blockEntity = null;
             }
         } else {
+            log.info("方块信息不正确,打开手持奥数");
             blockEntity = null;
         }
     }

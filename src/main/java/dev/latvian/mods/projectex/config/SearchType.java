@@ -13,7 +13,7 @@ public enum SearchType {
     public final boolean jeiSync;
 
     SearchType(String name, boolean autoSelected, boolean jeiSync) {
-        this.translationKey = "extendedexchange.general.search_type." + name;
+        this.translationKey = "projectex.general.search_type." + name;
         this.autoselected = autoSelected;
         this.jeiSync = jeiSync;
     }

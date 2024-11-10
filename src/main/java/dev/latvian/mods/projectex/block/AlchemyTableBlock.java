@@ -75,9 +75,9 @@ public class AlchemyTableBlock extends AbstractEXBlock {
 		level.addParticle(ParticleTypes.FLAME, x + 2.5D / 16D, y, z + 13.5D / 16D, 0D, 0D, 0D);
 	}
 
-	@Nullable
-	@Override
-	public BlockEntity newBlockEntity(BlockGetter arg) {
-		return new AlchemyTableEntity();
-	}
+//	@Nullable
+//	@Override
+//	public BlockEntity newBlockEntity(BlockGetter arg) {
+//		return new AlchemyTableEntity();
+//	}
 }

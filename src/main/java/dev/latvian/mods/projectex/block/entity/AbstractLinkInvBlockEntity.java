@@ -13,21 +13,25 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.TickableBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public abstract class AbstractLinkInvBlockEntity extends AbstractLinkBlockEntity{
+public abstract class AbstractLinkInvBlockEntity extends AbstractLinkBlockEntity implements TickableBlockEntity {
+    private static final Log log = LogFactory.getLog(AbstractLinkInvBlockEntity.class);
     private final LinkInputHandler inputHandler;
     private final LinkOutputHandler outputHandler;
     private final LazyOptional<WrappedItemHandler> itemCap;
 
-    public AbstractLinkInvBlockEntity(BlockEntityType<?> type, BlockPos blockPos, BlockState blockState, int inputSize, int outputSize) {
+    public AbstractLinkInvBlockEntity(BlockEntityType<?> type, int inputSize, int outputSize) {
         super(type);
 
         inputHandler = new LinkInputHandler(this, inputSize);
@@ -36,8 +40,8 @@ public abstract class AbstractLinkInvBlockEntity extends AbstractLinkBlockEntity
     }
 
     @Override
-    public void load(BlockState state,CompoundTag tag) {
-        super.load(state,tag);
+    public void load(BlockState state, CompoundTag tag) {
+        super.load(state, tag);
 
         inputHandler.deserializeNBT(tag.getCompound("Input"));
         outputHandler.deserializeNBT(tag.getCompound("Output"));
@@ -53,18 +57,32 @@ public abstract class AbstractLinkInvBlockEntity extends AbstractLinkBlockEntity
     }
 
     @Override
+    public void tick() {
+        super.tick();
+        tickServer();
+    }
+
+    @Override
     public void tickServer() {
         // scan items in the input inv and convert to EMC, adding to the block's EMC store
 
-        ServerPlayer player = nonNullLevel().getServer().getPlayerList().getPlayer(getOwnerId());
+//        ServerPlayer player = nonNullLevel().getServer().getPlayerList().getPlayer(getOwnerId());
+
+        ServerPlayer player;
+        if (nonNullLevel() != null && nonNullLevel().getServer() != null) {
+            player = nonNullLevel().getServer().getPlayerList().getPlayer(getOwnerId());
+        } else {
+            player = null;
+        }
+//        log.info("Player: " + player);
         LazyOptional<IKnowledgeProvider> knowledgeProvider = player == null ? LazyOptional.empty() : player.getCapability(ProjectEAPI.KNOWLEDGE_CAPABILITY);
         boolean syncKnowledge = false;
         boolean changeDone = false;
-
         for (int i = 0; i < inputHandler.getSlots(); i++) {
             ItemStack stack = inputHandler.getStackInSlot(i);
             if (!stack.isEmpty()) {
                 long value = ProjectEAPI.getEMCProxy().getValue(stack);
+//                log.info("Value: " + value);
                 if (value > 0L) {
                     if (learnItems()) {
                         ItemInfo fixed = ProjectEAPI.getEMCProxy().getPersistentInfo(ItemInfo.fromStack(stack));
@@ -73,6 +91,7 @@ public abstract class AbstractLinkInvBlockEntity extends AbstractLinkBlockEntity
                         }
                     }
                     long actual = (long) (stack.getCount() * value * ProjectEConfig.server.difficulty.covalenceLoss.get());
+                    log.info("Adding " + actual + " EMC from " + stack);
                     storedEMC += actual;
                     inputHandler.setStackInSlot(i, ItemStack.EMPTY);
                     changeDone = true;
@@ -106,9 +125,11 @@ public abstract class AbstractLinkInvBlockEntity extends AbstractLinkBlockEntity
         itemCap.invalidate();
     }
 
+
     public IItemHandler getInputHandler() {
         return inputHandler;
     }
+
 
     public LinkOutputHandler getOutputHandler() {
         return outputHandler;
@@ -159,6 +180,7 @@ public abstract class AbstractLinkInvBlockEntity extends AbstractLinkBlockEntity
             this.inputHandler = inputHandler;
             this.outputHandler = outputHandler;
         }
+
         @Override
         public int getSlots() {
             return inputHandler.getSlots() + outputHandler.getSlots();
@@ -181,6 +203,8 @@ public abstract class AbstractLinkInvBlockEntity extends AbstractLinkBlockEntity
         public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
             return isInput(slot) ? inputHandler.insertItem(slot, stack, simulate) : stack;
         }
+
+
 
         @NotNull
         @Override

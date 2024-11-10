@@ -172,6 +172,7 @@ public class AlchemyTableEntity extends AbstractEMCBlockEntity implements MenuPr
 
 
 
+
 	public class TrackedData implements ContainerData {
 		@Override
 		public int get(int index) {

@@ -21,6 +21,9 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<ArcaneTabletMenu>> ARCANE_TABLET = register("arcane_tablet", ArcaneTabletMenu::new);
     public static final RegistryObject<MenuType<StoneTableMenu>> STONE_TABLE = register("stone_table", StoneTableMenu::new);
 
+    public static final RegistryObject<MenuType<PersonalLinkMenu>> PERSONAL_LINK = register("personal_link", PersonalLinkMenu::new);
+    public static final RegistryObject<MenuType<RefinedLinkMenu>> REFINED_LINK = register("refined_link", RefinedLinkMenu::new);
+    public static final RegistryObject<MenuType<CompressedRefinedLinkMenu>> COMPRESSED_REFINED_LINK = register("compressed_refined_link", CompressedRefinedLinkMenu::new);
 
     private static <C extends AbstractContainerMenu, T extends MenuType<C>> RegistryObject<T> register(String name, IContainerFactory<? extends C> f) {
         //noinspection unchecked

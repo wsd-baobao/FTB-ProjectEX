@@ -1,35 +1,43 @@
 package dev.latvian.mods.projectex.block.entity;
 
 import moze_intel.projecte.api.ProjectEAPI;
+import moze_intel.projecte.api.capabilities.IKnowledgeProvider;
 import moze_intel.projecte.api.capabilities.tile.IEmcStorage;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.TickableBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.math.BigInteger;
 import java.util.Objects;
+import java.util.UUID;
 
 public abstract class AbstractEMCBlockEntity extends BlockEntity implements TickingEXBlockEntity, IEmcStorage {
     protected long storedEMC = 0L;  // buffered in the block and moved to the player every 20 ticks
     private final LazyOptional<IEmcStorage> emcStorageCapability;
-
     public AbstractEMCBlockEntity(BlockEntityType<?> type) {
         super(type);
         emcStorageCapability = LazyOptional.of(() -> this);
     }
 
+
+
     @Override
-    public void load(BlockState state,CompoundTag tag) {
-        super.load(state,tag);
+    public void load(BlockState state, CompoundTag tag) {
+        super.load(state, tag);
         storedEMC = tag.getLong("StoredEMC");
 
     }
@@ -40,6 +48,7 @@ public abstract class AbstractEMCBlockEntity extends BlockEntity implements Tick
         tag.putLong("StoredEMC", storedEMC);
         return tag;
     }
+
 
     @Override
     public void setChanged() {

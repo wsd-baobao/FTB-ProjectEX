@@ -49,9 +49,11 @@ public class ProjectEX {
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+
+		ProjectEXBlockEntities.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
 		ModBlocks.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
 		ModItems.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
-		ProjectEXBlockEntities.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
+
 		ModMenuTypes.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
 //		ModRecipeTypes.register();
 

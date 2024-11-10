@@ -1,8 +1,6 @@
 package dev.latvian.mods.projectex.client;
 
-import dev.latvian.mods.projectex.client.gui.AlchemyTableScreen;
-import dev.latvian.mods.projectex.client.gui.ArcaneTabletScreen;
-import dev.latvian.mods.projectex.client.gui.StoneTableScreen;
+import dev.latvian.mods.projectex.client.gui.*;
 import dev.latvian.mods.projectex.menu.ModMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.eventbus.api.Event;
@@ -28,6 +26,10 @@ public class ClientSetup {
         MenuScreens.register(ModMenuTypes.ALCHEMY_TABLE.get(), AlchemyTableScreen::new);
         MenuScreens.register(ModMenuTypes.ARCANE_TABLET.get(), ArcaneTabletScreen::new);
         MenuScreens.register(ModMenuTypes.STONE_TABLE.get(), StoneTableScreen::new);
+        MenuScreens.register(ModMenuTypes.PERSONAL_LINK.get(), PersonalLinkScreen::new);
+        MenuScreens.register(ModMenuTypes.REFINED_LINK.get(), RefinedLinkScreen::new);
+        MenuScreens.register(ModMenuTypes.COMPRESSED_REFINED_LINK.get(), CompressedRefinedLinkScreen::new);
+
 
     }
 }

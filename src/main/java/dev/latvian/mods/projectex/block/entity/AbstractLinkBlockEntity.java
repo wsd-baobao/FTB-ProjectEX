@@ -2,24 +2,52 @@ package dev.latvian.mods.projectex.block.entity;
 
 import dev.latvian.mods.projectex.EMCSyncHandler;
 import moze_intel.projecte.api.ProjectEAPI;
+import moze_intel.projecte.api.capabilities.IKnowledgeProvider;
 import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.TickableBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.math.BigInteger;
 import java.util.UUID;
 
-public class AbstractLinkBlockEntity extends AbstractEMCBlockEntity{
+public class AbstractLinkBlockEntity extends AbstractEMCBlockEntity implements TickableBlockEntity {
     private UUID ownerId = Util.NIL_UUID;
     private String ownerName = "";
 
+    private int tick=0;
     public AbstractLinkBlockEntity(BlockEntityType<?> type) {
         super(type);
+    }
+
+    @Override
+    public void tick() {
+        if (level.isClientSide()) {
+            return;
+        }
+
+        tick++;
+
+        if (tick >= 20) {
+            tick = 0;
+
+            ServerPlayer player = level.getServer().getPlayerList().getPlayer(ownerId);
+            IKnowledgeProvider provider = player == null ? null : player.getCapability(ProjectEAPI.KNOWLEDGE_CAPABILITY).orElse(null);
+
+            if (provider != null && storedEMC ==0) {
+                provider.setEmc(provider.getEmc().add(BigInteger.valueOf(storedEMC)));
+                storedEMC = 0L;
+                setChanged();
+                provider.syncEmc(player);
+            }
+        }
     }
 
     @Override
@@ -60,12 +88,23 @@ public class AbstractLinkBlockEntity extends AbstractEMCBlockEntity{
         ownerName = tag.getString("OwnerName");
     }
 
+
+
+
     @Override
     public void tickServer() {
+
         if (nonNullLevel().getGameTime() % 20 == 0) {
             // move any locally stored EMC in the block into the player's network, if they're online
             if (storedEMC > 0L) {
-                ServerPlayer player = nonNullLevel().getServer().getPlayerList().getPlayer(ownerId);
+
+                ServerPlayer player;
+                if (nonNullLevel() != null && nonNullLevel().getServer() != null) {
+                    player = nonNullLevel().getServer().getPlayerList().getPlayer(getOwnerId());
+                } else {
+                    player = null;
+                }
+
                 if (player != null) {
                     player.getCapability(ProjectEAPI.KNOWLEDGE_CAPABILITY).ifPresent(provider -> {
                         provider.setEmc(provider.getEmc().add(BigInteger.valueOf(storedEMC)));
@@ -136,4 +175,7 @@ public class AbstractLinkBlockEntity extends AbstractEMCBlockEntity{
     public void trySyncEMC() {
         EMCSyncHandler.INSTANCE.needsSync(getOwnerId());
     }
+
+
+
 }

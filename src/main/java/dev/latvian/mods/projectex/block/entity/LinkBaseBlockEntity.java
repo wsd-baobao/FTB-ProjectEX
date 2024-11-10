@@ -13,6 +13,8 @@ import net.minecraft.world.level.block.entity.TickableBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -20,6 +22,7 @@ import java.math.BigInteger;
 import java.util.UUID;
 
 public class LinkBaseBlockEntity extends BlockEntity implements TickableBlockEntity, IEmcStorage {
+	private static final Log log = LogFactory.getLog(LinkBaseBlockEntity.class);
 	public UUID owner = Util.NIL_UUID;
 	public String ownerName = "";
 	public int tick = 0;
