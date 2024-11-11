@@ -3,12 +3,10 @@ package dev.latvian.mods.projectex.network;
 
 import dev.latvian.mods.projectex.inventor.FilterSlot;
 import dev.latvian.mods.projectex.util.EXUtils;
-import moze_intel.projecte.api.ProjectEAPI;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.network.NetworkEvent;
-
 
 import java.util.function.Supplier;
 

@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import dev.latvian.mods.projectex.block.entity.AbstractEMCBlockEntity;
 import dev.latvian.mods.projectex.client.gui.buttons.ExtractItemButton;
 import dev.latvian.mods.projectex.config.ConfigHelper;
-
 import dev.latvian.mods.projectex.integration.jei.JEIHooks;
 import dev.latvian.mods.projectex.menu.AbstractTableMenu;
 import moze_intel.projecte.api.ItemInfo;

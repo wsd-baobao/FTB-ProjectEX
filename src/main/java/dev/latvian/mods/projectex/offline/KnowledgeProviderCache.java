@@ -2,7 +2,6 @@ package dev.latvian.mods.projectex.offline;
 
 import moze_intel.projecte.api.capabilities.IKnowledgeProvider;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.IForgeRegistry;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;

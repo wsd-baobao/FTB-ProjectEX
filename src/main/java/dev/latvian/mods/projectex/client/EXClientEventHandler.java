@@ -1,7 +1,6 @@
 package dev.latvian.mods.projectex.client;
 
 import com.google.common.collect.EvictingQueue;
-
 import dev.latvian.mods.projectex.ProjectEX;
 import dev.latvian.mods.projectex.client.gui.EMCFormat;
 import dev.latvian.mods.projectex.config.ConfigHelper;

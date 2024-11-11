@@ -1,13 +1,7 @@
 package dev.latvian.mods.projectex.recipes;
 
 
-import net.minecraft.core.Registry;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraftforge.eventbus.EventBus;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.*;
 
 
 public class ModRecipeTypes {

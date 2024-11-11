@@ -2,11 +2,8 @@ package dev.latvian.mods.projectex.client.gui.buttons;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import dev.latvian.mods.projectex.client.gui.AbstractEXScreen;
 import org.lwjgl.opengl.GL11;
-
-import java.util.List;
 
 public class ArrowButton extends EXButton {
     public ArrowButton(int x, int y, OnPress onPress) {

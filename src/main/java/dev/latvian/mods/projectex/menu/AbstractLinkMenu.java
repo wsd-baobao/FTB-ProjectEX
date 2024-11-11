@@ -5,7 +5,6 @@ import dev.latvian.mods.projectex.block.entity.AbstractLinkInvBlockEntity;
 import dev.latvian.mods.projectex.inventor.FilterSlot;
 import moze_intel.projecte.api.ItemInfo;
 import moze_intel.projecte.api.ProjectEAPI;
-
 import moze_intel.projecte.api.capabilities.tile.IEmcStorage;
 import moze_intel.projecte.config.ProjectEConfig;
 import net.minecraft.core.BlockPos;

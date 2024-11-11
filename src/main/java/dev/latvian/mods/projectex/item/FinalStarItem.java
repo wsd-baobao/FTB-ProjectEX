@@ -16,7 +16,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -49,7 +48,6 @@ public class FinalStarItem extends ItemPE implements IItemEmcHolder, IPedestalIt
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(stack, level, list, flag);
 		list.add(new TranslatableComponent("item.projectex.final_star.tooltip").withStyle(ChatFormatting.GRAY));
-		list.add(new TextComponent("WIP!").withStyle(ChatFormatting.RED));
 	}
 
 //	@Override
@@ -118,7 +116,7 @@ public class FinalStarItem extends ItemPE implements IItemEmcHolder, IPedestalIt
 //		if (!level.isClientSide && level.getGameTime() % (long) interval == EXUtils.mod(blockPos.hashCode(), interval)) {
 //			List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, new AABB(blockPos).inflate(0D, 1D, 0D));
 //			if (!items.isEmpty()) {
-//				// TODO capability caching
+//
 //				for (Direction facing : EXUtils.DIRECTIONS) {
 //					if (facing != Direction.UP) {
 //						BlockEntity be = level.getBlockEntity(blockPos.relative(facing));

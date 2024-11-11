@@ -1,8 +1,6 @@
 package dev.latvian.mods.projectex.block;
 
 import dev.latvian.mods.projectex.menu.StoneTableMenu;
-import moze_intel.projecte.gameObjs.container.TransmutationContainer;
-import moze_intel.projecte.utils.text.PELang;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

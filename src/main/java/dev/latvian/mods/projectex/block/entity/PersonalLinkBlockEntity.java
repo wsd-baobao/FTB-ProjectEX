@@ -1,6 +1,5 @@
 package dev.latvian.mods.projectex.block.entity;
 
-import dev.latvian.mods.projectex.menu.ModMenuTypes;
 import dev.latvian.mods.projectex.menu.PersonalLinkMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;

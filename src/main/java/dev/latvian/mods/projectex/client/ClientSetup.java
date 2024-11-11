@@ -3,7 +3,6 @@ package dev.latvian.mods.projectex.client;
 import dev.latvian.mods.projectex.client.gui.*;
 import dev.latvian.mods.projectex.menu.ModMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 

@@ -1,7 +1,5 @@
 package dev.latvian.mods.projectex.client.gui;
 
-import dev.latvian.mods.projectex.ProjectEX;
-import dev.latvian.mods.projectex.config.ConfigHelper;
 import net.minecraft.client.gui.screens.Screen;
 
 import java.math.BigDecimal;

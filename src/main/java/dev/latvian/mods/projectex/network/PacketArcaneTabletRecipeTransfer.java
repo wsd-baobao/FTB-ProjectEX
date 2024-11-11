@@ -1,7 +1,6 @@
 package dev.latvian.mods.projectex.network;
 
 import com.google.common.collect.ImmutableList;
-
 import dev.latvian.mods.projectex.menu.ArcaneTabletMenu;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -10,7 +9,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.network.NetworkEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;

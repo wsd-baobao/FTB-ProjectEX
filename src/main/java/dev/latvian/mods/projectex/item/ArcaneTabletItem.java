@@ -2,11 +2,8 @@ package dev.latvian.mods.projectex.item;
 
 import dev.latvian.mods.projectex.ProjectEX;
 import dev.latvian.mods.projectex.menu.ArcaneTabletMenu;
-import moze_intel.projecte.gameObjs.container.TransmutationContainer;
 import moze_intel.projecte.utils.text.PELang;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -45,7 +42,6 @@ public class ArcaneTabletItem extends Item {
 	@OnlyIn(Dist.CLIENT)
 	public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag flag) {
 		super.appendHoverText(stack, level, list, flag);
-		list.add(new TextComponent("WIP!").withStyle(ChatFormatting.RED));
 	}
 
 	private static class ContainerProvider implements MenuProvider {

@@ -5,7 +5,6 @@ import dev.latvian.mods.projectex.client.ClientUtils;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.fml.network.NetworkEvent;
 
-
 import java.util.function.Supplier;
 
 /**

@@ -2,7 +2,6 @@ package dev.latvian.mods.projectex.client.gui.buttons;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import dev.latvian.mods.projectex.client.gui.EMCFormat;
 import dev.latvian.mods.projectex.network.NetworkHandler;
 import dev.latvian.mods.projectex.network.PacketGuiButton;
@@ -19,7 +18,6 @@ import org.lwjgl.opengl.GL11;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
-import java.util.Objects;
 
 public class ExtractItemButton extends EXButton {
     private final IKnowledgeProvider provider;

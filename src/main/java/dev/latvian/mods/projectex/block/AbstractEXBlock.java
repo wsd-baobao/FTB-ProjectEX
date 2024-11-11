@@ -4,8 +4,6 @@ import dev.latvian.mods.projectex.block.entity.AbstractEMCBlockEntity;
 import dev.latvian.mods.projectex.block.entity.AbstractLinkBlockEntity;
 import dev.latvian.mods.projectex.block.entity.BlockEntityTicker;
 import dev.latvian.mods.projectex.block.entity.TickingEXBlockEntity;
-import moze_intel.projecte.api.ProjectEAPI;
-import moze_intel.projecte.api.capabilities.IKnowledgeProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerLevel;
@@ -18,13 +16,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.TickableBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
@@ -32,7 +28,6 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import org.jline.utils.Log;
 
 import javax.annotation.Nullable;
-import java.math.BigInteger;
 import java.util.Random;
 
 public abstract class AbstractEXBlock extends Block  {

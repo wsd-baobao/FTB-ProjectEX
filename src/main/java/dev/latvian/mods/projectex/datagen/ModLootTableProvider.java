@@ -2,7 +2,6 @@ package dev.latvian.mods.projectex.datagen;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
-
 import dev.latvian.mods.projectex.block.ModBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.BlockLoot;

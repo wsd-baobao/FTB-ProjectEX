@@ -5,11 +5,9 @@ import dev.latvian.mods.projectex.block.ModBlocks;
 import moze_intel.projecte.gameObjs.PETags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 class ModBlockTagsProvider extends BlockTagsProvider {

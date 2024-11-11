@@ -19,6 +19,7 @@ package dev.latvian.mods.projectex.recipes;
 
 //import dev.ftb.extendedexchange.network.NetworkHandler;
 //import dev.ftb.extendedexchange.network.PacketClearRecipeCache;
+
 import dev.latvian.mods.projectex.ProjectEX;
 import dev.latvian.mods.projectex.network.NetworkHandler;
 import dev.latvian.mods.projectex.network.PacketClearRecipeCache;
@@ -36,7 +37,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-//import net.minecraftforge.server.ServerLifecycleHooks;
 
 import java.util.ArrayList;
 import java.util.List;
