@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.jetbrains.annotations.Nullable;
+import org.jline.utils.Log;
 
 public class AlchemyTableRecipe implements Recipe<Container> {
     private static final long MIN_RECIPE_EMC_COST = 64L;
@@ -81,6 +82,7 @@ public class AlchemyTableRecipe implements Recipe<Container> {
     }
 
     public void toJson(JsonObject json) {
+        Log.info("Serializing recipe " + id);
         json.add("input", input.toJson());
         json.add("output", RecipeHelper.serializeOneItemStack(output));
         json.addProperty("emc_override", emcOverride);

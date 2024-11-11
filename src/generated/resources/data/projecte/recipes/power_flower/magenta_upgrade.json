@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "projectex:matter/magenta",
+  "pattern": [
+    "ADA",
+    "ARA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "projectex:magenta_relay"
+    },
+    "D": {
+      "item": "projectex:magenta_collector"
+    },
+    "R": {
+      "item": "projectex:red_power_flower"
+    }
+  },
+  "result": {
+    "item": "projectex:magenta_power_flower"
+  }
+}

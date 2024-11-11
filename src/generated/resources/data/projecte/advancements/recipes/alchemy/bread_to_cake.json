@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "projecte:alchemy/bread_to_cake"
+    ]
+  },
+  "criteria": {
+    "alchemy_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "projectex:alchemy_table"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "projecte:alchemy/bread_to_cake"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "alchemy_table",
+      "has_the_recipe"
+    ]
+  ]
+}

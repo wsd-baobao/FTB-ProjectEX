@@ -55,7 +55,10 @@ public class AlchemyTableBlock extends AbstractEXBlock {
 		super(Properties.of(Material.STONE).strength(1F).sound(SoundType.STONE).noOcclusion());
 	}
 
-
+	@Override
+	public @Nullable BlockEntity createTileEntity(BlockState state, BlockGetter world) {
+		return new AlchemyTableEntity();
+	}
 
 	@Override
 	@Deprecated

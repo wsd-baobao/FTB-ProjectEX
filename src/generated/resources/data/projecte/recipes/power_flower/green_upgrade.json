@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "projectex:matter/green",
+  "pattern": [
+    "ADA",
+    "ARA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "projectex:green_relay"
+    },
+    "D": {
+      "item": "projectex:green_collector"
+    },
+    "R": {
+      "item": "projectex:cyan_power_flower"
+    }
+  },
+  "result": {
+    "item": "projectex:green_power_flower"
+  }
+}

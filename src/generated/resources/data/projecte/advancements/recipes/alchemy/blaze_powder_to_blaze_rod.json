@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "projecte:alchemy/blaze_powder_to_blaze_rod"
+    ]
+  },
+  "criteria": {
+    "alchemy_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "projectex:alchemy_table"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "projecte:alchemy/blaze_powder_to_blaze_rod"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "alchemy_table",
+      "has_the_recipe"
+    ]
+  ]
+}

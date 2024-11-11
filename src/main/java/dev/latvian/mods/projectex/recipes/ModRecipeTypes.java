@@ -1,28 +1,22 @@
 package dev.latvian.mods.projectex.recipes;
 
 
-import dev.latvian.mods.projectex.ProjectEX;
-import net.java.games.input.Component;
 import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.EventBus;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.*;
 
 
 public class ModRecipeTypes {
-
     public static final RecipeType<AlchemyTableRecipe> ALCHEMY_TABLE = RecipeType.register("projectex:alchemy_table");
 
+    public static void register() {
 
-    public static <T extends Recipe<?>> RecipeType<T> register(String name, Class<T> recipeClass) {
-        return RecipeType.register( name);
+        // 这里不需要显式注册到事件总线，但可以在需要引用的地方确保配方类型已经加载
     }
-
 
 //    public static final DeferredRegister<RecipeType<?>> REGISTRY = DeferredRegister.create(, ProjectEX.MOD_ID);
 //

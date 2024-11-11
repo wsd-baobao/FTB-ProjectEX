@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "projecte:alchemy/beef_to_rotten_flesh"
+    ]
+  },
+  "criteria": {
+    "alchemy_table": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "projectex:alchemy_table"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "projecte:alchemy/beef_to_rotten_flesh"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "alchemy_table",
+      "has_the_recipe"
+    ]
+  ]
+}

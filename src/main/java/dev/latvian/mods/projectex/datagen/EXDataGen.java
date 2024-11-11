@@ -22,7 +22,6 @@ public class EXDataGen {
             gen.addProvider(new ModBlockStateProvider(gen, MODID, efh));
             gen.addProvider(new ModBlockModelProvider(gen, MODID, efh));
             gen.addProvider(new ModItemModelProvider(gen, MODID, efh));
-            gen.addProvider(new ModRecipeProvider(gen));
         }
 
         if (event.includeServer()) {

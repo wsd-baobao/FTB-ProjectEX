@@ -25,7 +25,7 @@ import java.math.BigInteger;
 import java.util.Objects;
 import java.util.UUID;
 
-public abstract class AbstractEMCBlockEntity extends BlockEntity implements TickingEXBlockEntity, IEmcStorage {
+public abstract class AbstractEMCBlockEntity extends BlockEntity implements TickingEXBlockEntity, IEmcStorage, TickableBlockEntity {
     protected long storedEMC = 0L;  // buffered in the block and moved to the player every 20 ticks
     private final LazyOptional<IEmcStorage> emcStorageCapability;
     public AbstractEMCBlockEntity(BlockEntityType<?> type) {

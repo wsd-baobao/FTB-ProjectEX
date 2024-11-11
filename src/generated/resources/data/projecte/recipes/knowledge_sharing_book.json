@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "projectex:tome",
+  "pattern": [
+    "RNR",
+    "NBN",
+    "RNR"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:writable_book"
+    },
+    "R": {
+      "item": "projectex:violet_matter"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "projectex:knowledge_sharing_book"
+  }
+}

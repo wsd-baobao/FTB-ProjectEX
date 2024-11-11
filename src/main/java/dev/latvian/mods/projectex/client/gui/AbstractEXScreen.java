@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AbstractEXScreen<C extends AbstractEXMenu<T> , T extends AbstractEMCBlockEntity> extends AbstractContainerScreen<C> {
+public abstract class AbstractEXScreen<C extends AbstractEXMenu<T>, T extends AbstractEMCBlockEntity> extends AbstractContainerScreen<C> {
 
     public AbstractEXScreen(C menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
@@ -29,6 +29,7 @@ public class AbstractEXScreen<C extends AbstractEXMenu<T> , T extends AbstractEM
         RenderSystem.enableTexture();
 
     }
+
     final void bindGuiTexture() {
         ResourceLocation guiTexture = getGuiTexture();
         if (guiTexture != null) {
@@ -36,9 +37,8 @@ public class AbstractEXScreen<C extends AbstractEXMenu<T> , T extends AbstractEM
         }
     }
 
-    protected ResourceLocation getGuiTexture() {
-        return null;
-    }
+    protected abstract ResourceLocation getGuiTexture();
+
 
     @Override
     public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
@@ -55,7 +55,7 @@ public class AbstractEXScreen<C extends AbstractEXMenu<T> , T extends AbstractEM
         if (!tooltip.isEmpty()) {
             renderComponentTooltip(poseStack, tooltip, mouseX, mouseY);
         }
-      //  renderHeldItem(poseStack, mouseX, mouseY);
+        //  renderHeldItem(poseStack, mouseX, mouseY);
     }
 
     @Override
@@ -68,7 +68,10 @@ public class AbstractEXScreen<C extends AbstractEXMenu<T> , T extends AbstractEM
     }
 
     private void renderHeldItem(PoseStack matrix, int mouseX, int mouseY) {
-        ItemStack heldItem = Minecraft.getInstance().player.inventory.getCarried(); // 获取鼠标上的物品
+        ItemStack heldItem = null; // 获取鼠标上的物品
+        if (Minecraft.getInstance().player != null) {
+            heldItem = Minecraft.getInstance().player.inventory.getCarried();
+        }
         if (!heldItem.isEmpty()) {
             // 设置渲染矩阵
             matrix.pushPose();

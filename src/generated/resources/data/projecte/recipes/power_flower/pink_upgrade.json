@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "projectex:matter/pink",
+  "pattern": [
+    "ADA",
+    "ARA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "projectex:pink_relay"
+    },
+    "D": {
+      "item": "projectex:pink_collector"
+    },
+    "R": {
+      "item": "projectex:magenta_power_flower"
+    }
+  },
+  "result": {
+    "item": "projectex:pink_power_flower"
+  }
+}

@@ -8,6 +8,7 @@ import dev.latvian.mods.projectex.item.ModItems;
 import dev.latvian.mods.projectex.menu.ModMenuTypes;
 import dev.latvian.mods.projectex.network.NetworkHandler;
 import dev.latvian.mods.projectex.recipes.ModRecipeSerializers;
+import dev.latvian.mods.projectex.recipes.ModRecipeTypes;
 import dev.latvian.mods.projectex.recipes.RecipeCache;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTab;
@@ -26,54 +27,57 @@ import org.apache.logging.log4j.core.Logger;
 
 @Mod(ProjectEX.MOD_ID)
 public class ProjectEX {
-	public static final String MOD_ID = "projectex";
+    public static final String MOD_ID = "projectex";
 
-	//public static ProjectEXCommon PROXY;
-	public static final Logger LOGGER = (Logger) LogManager.getLogger();
-	public static final Direction[] DIRECTIONS = Direction.values();
+    //public static ProjectEXCommon PROXY;
+    public static final Logger LOGGER = (Logger) LogManager.getLogger();
+    public static final Direction[] DIRECTIONS = Direction.values();
 
-	public static CreativeModeTab tab;
+    public static CreativeModeTab tab;
 
-	public ProjectEX() {
-		//PROXY = DistExecutor.safeRunForDist(() -> FTBJarModClient::new, () -> FTBJarModCommon::new);
+    public ProjectEX() {
+        //PROXY = DistExecutor.safeRunForDist(() -> FTBJarModClient::new, () -> FTBJarModCommon::new);
 
-		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientSetup::initEarly);
-		tab = new CreativeModeTab(MOD_ID) {
-			@Override
-			@OnlyIn(Dist.CLIENT)
-			public ItemStack makeIcon() {
-				return new ItemStack(ModItems.ARCANE_TABLET.get());
-			}
-		};
-		ConfigHolder.init();
-		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-
-		ProjectEXBlockEntities.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
-		ModBlocks.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
-		ModItems.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
-
-		ModMenuTypes.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
-//		ModRecipeTypes.register();
-
-		ModRecipeSerializers.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
-		// ProjectEXMenus.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientSetup::initEarly);
+        tab = new CreativeModeTab(MOD_ID) {
+            @Override
+            @OnlyIn(Dist.CLIENT)
+            public ItemStack makeIcon() {
+                return new ItemStack(ModItems.ARCANE_TABLET.get());
+            }
+        };
+        ConfigHolder.init();
+        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 
-		modBus.addListener(this::commonSetup);
-		forgeBus.addListener(this::addReloadListeners);
-		forgeBus.addListener(EMCSyncHandler.INSTANCE::onServerTick);
-		//ProjectEXNet.init();
-		//PROXY.init();
-	}
+        ProjectEXBlockEntities.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ModBlocks.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ModItems.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
 
-	private void commonSetup(FMLCommonSetupEvent event) {
-		NetworkHandler.init();
-	}
+        ModMenuTypes.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
 
-	private void addReloadListeners(AddReloadListenerEvent event) {
-		event.addListener(RecipeCache.getCacheReloadListener());
-	}
+
+        ModRecipeSerializers.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
+        // ProjectEXMenus.REGISTRY.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ModRecipeTypes.register();//配方注册不了
+
+        modBus.addListener(this::commonSetup);
+        forgeBus.addListener(this::addReloadListeners);
+        forgeBus.addListener(EMCSyncHandler.INSTANCE::onServerTick);
+        //ProjectEXNet.init();
+        //PROXY.init();
+    }
+
+    private void commonSetup(FMLCommonSetupEvent event) {
+        NetworkHandler.init();
+        event.enqueueWork(() -> {
+            ModRecipeTypes.register();
+        });
+    }
+
+    private void addReloadListeners(AddReloadListenerEvent event) {
+        event.addListener(RecipeCache.getCacheReloadListener());
+    }
 
 }

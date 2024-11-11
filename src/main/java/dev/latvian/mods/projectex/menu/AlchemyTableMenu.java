@@ -15,8 +15,9 @@ import org.jetbrains.annotations.NotNull;
  * 炼金桌的容器UI界面
  */
 public class AlchemyTableMenu extends AbstractEXMenu<AlchemyTableEntity>{
-    public AlchemyTableMenu(MenuType<?> type, int windowId, Inventory invPlayer, BlockPos blockPos) {
-        super(type, windowId, invPlayer, blockPos);
+    public AlchemyTableMenu(int windowId, Inventory invPlayer, BlockPos blockPos) {
+        super(ModMenuTypes.ALCHEMY_TABLE.get(), windowId, invPlayer, blockPos);
+
         addSlot(new SlotItemHandler(getBlockEntity().getInventory(), 0, 44, 35));
         addSlot(new OutputSlot(getBlockEntity().getInventory(), 1, 116, 35));
 
@@ -25,13 +26,8 @@ public class AlchemyTableMenu extends AbstractEXMenu<AlchemyTableEntity>{
         addDataSlots(getBlockEntity().trackedData);
     }
 
-    public AlchemyTableMenu(int i, Inventory inventory, BlockPos pos) {
-        this(ModMenuTypes.ALCHEMY_TABLE.get(), i, inventory, pos);
-
-    }
-
     public AlchemyTableMenu(int i, Inventory inventory, FriendlyByteBuf friendlyByteBuf) {
-        this(ModMenuTypes.ALCHEMY_TABLE.get(), i, inventory, friendlyByteBuf.readBlockPos());
+        this( i, inventory, friendlyByteBuf.readBlockPos());
     }
 
     @Override

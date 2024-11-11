@@ -20,7 +20,7 @@ public class ClientConfig {
                 .comment("Where (or whether) to show the player's personal EMC")
                 .defineEnum("screen_position", EMCOverlayPosition.TOP_LEFT);
         general.onlyShowEMCWhenHoldingModItem = builder
-                .comment("If true, on-screen personal EMC is only shown when holding an item from ProjectE or ExtendedeXchange")
+                .comment("If true, on-screen personal EMC is only shown when holding an item from ProjectE or ProjectEX")
                 .define("only_show_emc_when_holding_mod_item", false);
         general.searchType = builder
                 .comment("The search type to use in the Stone Table")

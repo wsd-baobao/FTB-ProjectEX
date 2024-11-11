@@ -24,7 +24,7 @@ public class ServerConfig {
                 .comment("Max stack size which Personal/Refined/Compressed Refined Link Blocks will return when extracting items. Setting this to 0 disables extraction of any item from these blocks.")
                 .defineInRange("emc_link_max_stack_size", 2_000_000_000, 0, Integer.MAX_VALUE);
         general.enableStoneTableWhitelist = builder
-                .comment("If false, ignore the Stone Table whitelist, which is the 'extendedexchange:stone_table_whitelist' item tag. If true, only items in that tag can be placed in the Stone Table.")
+                .comment("If false, ignore the Stone Table whitelist, which is the 'projectex:stone_table_whitelist' item tag. If true, only items in that tag can be placed in the Stone Table.")
                 .define("enable_stone_table_whitelist", false);
         general.finalStarCopiesAnyItem = builder
                 .comment("If false, the Final Star can only copy items that have an EMC value.")

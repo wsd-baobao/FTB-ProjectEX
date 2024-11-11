@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "projectex:matter/red",
+  "pattern": [
+    "ADA",
+    "ARA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "projectex:red_relay"
+    },
+    "D": {
+      "item": "projectex:red_collector"
+    },
+    "R": {
+      "item": "projectex:dark_power_flower"
+    }
+  },
+  "result": {
+    "item": "projectex:red_power_flower"
+  }
+}

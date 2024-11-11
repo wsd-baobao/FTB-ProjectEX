@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "projectex:matter/lime",
+  "pattern": [
+    "ADA",
+    "ARA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "projectex:lime_relay"
+    },
+    "D": {
+      "item": "projectex:lime_collector"
+    },
+    "R": {
+      "item": "projectex:green_power_flower"
+    }
+  },
+  "result": {
+    "item": "projectex:lime_power_flower"
+  }
+}

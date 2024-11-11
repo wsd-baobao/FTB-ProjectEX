@@ -1,6 +1,7 @@
 package dev.latvian.mods.projectex.datagen;
 
 import dev.latvian.mods.projectex.Matter;
+import dev.latvian.mods.projectex.ProjectEX;
 import dev.latvian.mods.projectex.Star;
 import dev.latvian.mods.projectex.datagen.recipes.AlchemyTableRecipeBuilder;
 import dev.latvian.mods.projectex.datagen.recipes.Criteria;
@@ -358,13 +359,14 @@ public class ModRecipeProvider extends RecipeProvider {
                 .group(EXDataGen.MODID + ":matter/red")
                 .requires(PEBlocks.RELAY_MK3)
                 .save(consumer, rl("relay/red_2"));
-
+        ProjectEX.LOGGER.info("Recipe created: " + this.getName());
         buildAlchemyTableRecipes(consumer);
     }
 
 
 
     private void buildAlchemyTableRecipes(Consumer<FinishedRecipe> consumer) {
+        ProjectEX.LOGGER.info("AlchemyTableRecipe created: " + this.getName());
         alchemyStep(consumer, Items.CHARCOAL, new ItemStack(Items.COAL));
 
 

@@ -19,6 +19,7 @@ package dev.latvian.mods.projectex.recipes;
 
 //import dev.ftb.extendedexchange.network.NetworkHandler;
 //import dev.ftb.extendedexchange.network.PacketClearRecipeCache;
+import dev.latvian.mods.projectex.ProjectEX;
 import dev.latvian.mods.projectex.network.NetworkHandler;
 import dev.latvian.mods.projectex.network.PacketClearRecipeCache;
 import it.unimi.dsi.fastutil.ints.Int2ObjectLinkedOpenHashMap;
@@ -81,11 +82,17 @@ public class RecipeCache<T extends RecipeType<R>, R extends Recipe<C>, C extends
     }
 
     public Optional<R> getCachedRecipe(Level world, C inv) {
+        ProjectEX.LOGGER.info("Fetching recipe for input: " + inv);
         int key = makeKey(inv);
         if (recipeCache.containsKey(key)) {
             return recipeCache.getAndMoveToFirst(key);
         } else {
             Optional<R> newRecipe = world.getRecipeManager().getRecipeFor(type, inv, world);
+            if (newRecipe.isPresent()) {
+                ProjectEX.LOGGER.info("Recipe found in RecipeManager: " + newRecipe.get().getId());
+            } else {
+                ProjectEX.LOGGER.info("No recipe found for input.");
+            }
             if (recipeCache.size() == MAX_CACHE_SIZE) {
                 recipeCache.removeLast();
             }
