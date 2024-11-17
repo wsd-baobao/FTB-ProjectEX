@@ -5,7 +5,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 
 public class RecipeTypes {
-    public static final RecipeType<AlchemyTableRecipe> ALCHEMY_TABLE = register("alchemy_table", AlchemyTableRecipe.class);
+    public static final RecipeType<AlchemyTableRecipe> ALCHEMY_TABLE = register("projectex:alchemy_table", AlchemyTableRecipe.class);
 
     private static <T extends Recipe<?>> RecipeType<T> register(String name, Class<T> recipeClass) {
         return RecipeType.register(name);

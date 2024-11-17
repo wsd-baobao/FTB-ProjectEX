@@ -1,25 +1,32 @@
 package dev.latvian.mods.projectex.integration.jei;
 
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 import dev.latvian.mods.projectex.ProjectEX;
 import dev.latvian.mods.projectex.block.ModBlocks;
 import dev.latvian.mods.projectex.client.gui.AbstractEXScreen;
 import dev.latvian.mods.projectex.client.gui.AlchemyTableScreen;
 import dev.latvian.mods.projectex.client.gui.ArcaneTabletScreen;
 import dev.latvian.mods.projectex.item.ModItems;
+import dev.latvian.mods.projectex.recipes.AlchemyTableRecipe;
+import dev.latvian.mods.projectex.recipes.ModRecipeTypes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
+import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import mezz.jei.api.runtime.IJeiRuntime;
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 @JeiPlugin
 public class JEIIntegration implements IModPlugin {
-    private static final ResourceLocation ID = new ResourceLocation(ProjectEX.MOD_ID, "default");
+    private static final ResourceLocation ID = new ResourceLocation(ProjectEX.MOD_ID, "jei_integration");
 
     static IJeiHelpers jeiHelpers;
     static IJeiRuntime runtime;
@@ -31,19 +38,31 @@ public class JEIIntegration implements IModPlugin {
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry) {
-        jeiHelpers = registry.getJeiHelpers();
+        // jeiHelpers = registry.getJeiHelpers();
+        registry.addRecipeCategories(new AlchemyTableCategory(registry.getJeiHelpers().getGuiHelper()));
     }
+
+    
+    @Override
+    public void registerRecipes(IRecipeRegistration registration) {
+        net.minecraft.world.item.crafting.RecipeManager manager = Minecraft.getInstance().level.getRecipeManager();
+        registration.addRecipes(manager.getAllRecipesFor(ModRecipeTypes.ALCHEMY_TABLE).stream().filter(r -> r instanceof AlchemyTableRecipe).collect(Collectors.toList()),AlchemyTableCategory.ID);
+
+    }
+
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.ALCHEMY_TABLE.get()), (ResourceLocation) RecipeTypes.ALCHEMY_TABLE);
         registration.addRecipeCatalyst(new ItemStack(ModItems.ARCANE_TABLET.get()), mezz.jei.api.constants.VanillaRecipeCategoryUid.CRAFTING);
     }
+    
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-        registration.addRecipeClickArea(AlchemyTableScreen.class, 78, 35, 23, 14, (ResourceLocation) RecipeTypes.ALCHEMY_TABLE);
+        registration.addRecipeClickArea(AlchemyTableScreen.class, 78, 35, 23, 14,(ResourceLocation) RecipeTypes.ALCHEMY_TABLE);
         registration.addGhostIngredientHandler(AbstractEXScreen.class, new EMCLinkJEI<>());
         registration.addGuiContainerHandler(ArcaneTabletScreen.class, new ArcaneTabletGuiArea());
     }
+
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
